@@ -30,17 +30,17 @@ router
 router.get("/admin/product", ProductController.product);
 router.get("/admin/product/add_product", ProductController.add_product);
 router.get("/admin/product/edit_product", ProductController.edit_product);
-router.get("/admin/product/del_product", ProductController.del_product)
+router.get("/admin/product/del_product", ProductController.del_product);
 //User
 router.get("/admin/user", UserController.user);
 router.get("/admin/user/add_user", UserController.add_user);
 router.get("/admin/user/edit_user", UserController.edit_user);
-router.get("/admin/user/del_user", UserController.del_user)
+router.get("/admin/user/del_user", UserController.del_user);
 //Category
 router.get("/admin/category", CategoryController.category);
 router.get("/admin/category/add_category", CategoryController.add_category);
 router.get("/admin/category/edit_category", CategoryController.edit_category);
-router.get("/admin/category/del_category", CategoryController.del_category)
+router.get("/admin/category/del_category", CategoryController.del_category);
 
 //Configuration
 router.get("/admin/config", ConfigController.config)

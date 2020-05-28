@@ -2,17 +2,19 @@ const mongoose = require("mongoose");
 const Category = mongoose.model("Category");
 const Product = mongoose.model("Product");
 module.exports.product = async (req, res) => {
-  // Product.find().exec(function (err, data) {
-  //   res.render("admin/product/product", {
-  //     //  Product: data
-  //     Product: data,
-  //     Category: data
 
-  //   });
-  // });
-  const products = await Product.find()
+  const products = await Product.find().populate("categories").exec()
+  product =JSON.parse(JSON.stringify(products))
+
+  
+ for (const iterator of products) {
+  console.log(iterator.categories[0].cat_name)
+
+ }
+    
+  
   res.render("admin/product/product", {
-    products
+    products:products
   })
 }
 
@@ -28,32 +30,6 @@ module.exports.product = async (req, res) => {
 //   }
 // });
 
-
-
-// module.exports.add_product = async (req, res) => {
-// const Product =await Product.find()
-// const Category =await Category.find()
-// const category_0 = await Category.find({
-//   _id: "5db7f9faa9da0856c7a4c631"
-// })
-// const category = await Category.findById("5db7f9faa9da0856c7a4c631")
-// console.log(category_0);
-// console.log(category);
-
-// const product = new product({
-//   cat_id: "5db7f9faa9da0856c7a4c631",
-//   prd_name: "iPhone 11",
-//   prd_image: "iphone-11.png",
-//   prd_price: "20000000",
-//   prd_warranty: "12 Tháng",
-//   prd_accessories: "Sách, sạc, tai nghe",
-//   prd_new: "Mới 100%",
-//   prd_promotion: "Tấm dán màn hình 4D",
-//   prd_status: 1,
-//   prd_featured: 1,
-//   prd_details: " iPhone 11 chính hãng"
-// });
-// product.save()
 //   await Product.deleteMany({
 //     _id: ["5db80537a9da0856c7a4c63b", "5db80537a9da0856c7a4c63c"]
 

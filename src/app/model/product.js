@@ -19,4 +19,11 @@ const ProductModel = new mongoose.Schema({
   }
 });
 
+
+ProductModel.virtual("categories", {
+  ref: 'Category',
+  localField: 'cat_id',
+  foreignField: '_id',
+})
+
 mongoose.model("Product", ProductModel, "Product");
