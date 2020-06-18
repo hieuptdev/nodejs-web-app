@@ -7,7 +7,7 @@
             <li><a href="#"><svg class="glyph stroked home">
                         <use xlink:href="#stroked-home"></use>
                     </svg></a></li>
-            <li><a href="">Quản lý sản phẩm</a></li>
+            <li><a href="/admin/product/">Quản lý sản phẩm</a></li>
             <li class="active">Thêm sản phẩm</li>
         </ol>
     </div>
@@ -27,8 +27,7 @@
                         <form role="form" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
-                                <input required name="prd_name" class="form-control" placeholder=""
-                                   >
+                                <input required id="prd_name" name="prd_name" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
@@ -57,19 +56,20 @@
                         <div class="form-group">
                             <label>Ảnh sản phẩm</label>
 
-                            <input required name="prd_image" type="file">
+                            <input required id="prd_image" name="prd_image" type="file">
                             <br>
                             <div>
-                                <img src="img/download.jpeg">
+                                <img width="150" id="img_preview" src="img/download.jpeg">
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Danh mục</label>
                             <select name="cat_id" class="form-control">
-                                <option value=1>iPhone</option>
-                                <option value=2>Samsung</option>
-                                <option value=3>Nokia</option>
-                                <option value=4>LG</option>
+
+                                <% data.categories.forEach((category)=>{ %>
+                                <option value="<%= category._id %>"><%= category.cat_name %> </option>
+                                <% }) %>
+
                             </select>
                         </div>
 
@@ -104,4 +104,5 @@
 
 </div>
 <!--/.main-->
+
 <%- include('../layout/footer') %>

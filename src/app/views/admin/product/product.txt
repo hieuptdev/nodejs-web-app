@@ -1,0 +1,22 @@
+    <% if(page>1){ %>
+                            <li class="page-item"><a class="page-link"
+                                    href="/admin/product?page=<%= page-1 %> ">Back</a>
+                            </li>
+                            <% } %>
+                            <% range.map((i)=>{ %>
+                            <li class="page-item <% page===i ? "active" : "" %>">
+
+                                <% if(i==="..."){ %>
+                                <span><%= i %> </span>
+                                <% } else{%>
+                                <a class="page-link" href="/admin/product?page=<%= i %> "><%= i %></a>
+                                <% } %>
+                            </li>
+                            <% }) %>
+
+                            <% if(page<totalPages){ %>
+
+                              
+                            <li class="page-item"><a class="page-link"
+                                    href="/admin/product?page=<%= parseInt(page) + 1 %>">Next</a></li>
+                            <% } %>

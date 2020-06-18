@@ -2,6 +2,14 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
+const session = require("express-session");
+//Khoi tao session
+app.use(
+  session({
+    secret: "vietpro-secret"
+  }));
+
+//Khoi
 require("../lib/mongo-db");
 app.use("/access", express.static(path.join(__dirname, "..", "public")));
 console.log(path.join(__dirname, "..", "public"));

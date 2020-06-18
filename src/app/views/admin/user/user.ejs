@@ -42,9 +42,9 @@
 
                             <% users.forEach((user,index)=>{ %>
                             <tr>
-                                <td style="">1</td>
-                                <td style=""><%= user.user_full %> </td>
-                                <td style=""><%= user.user_mails %> </td>
+                                <td><%= index+1 %> </td>
+                                <td><%= user.user_full %> </td>
+                                <td><%= user.user_mails %> </td>
                                 <td>
                                     <% if(user.user_level===1){ %>
                                     <span class="label label-danger">Admin</span>
@@ -53,9 +53,10 @@
                                     <% } %>
                                 </td>
                                 <td class="form-group">
-                                    <a href="/admin/user/edit_user" class="btn btn-primary"><i
+                                    <a href="/admin/user/edit_user/<%= user.id %> " class="btn btn-primary"><i
                                             class="glyphicon glyphicon-pencil"></i></a>
-                                    <a href="/admin/user/del_user" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                                    <a onclick="return del();" href="/admin/user/del_user/<%= user.id %>  "
+                                        class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                                 </td>
                             </tr>
                             <% }) %>
@@ -65,11 +66,16 @@
                 <div class="panel-footer">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="/admin/user?page=<%=pagePrev%>">&laquo;</a>
+                            </li>
+
+                            <%for(i=1; i<=totalPages; i++){%>
+                            <li class="page-item"><a class="page-link" href="/admin/user?page=<%=i%>"><%=i%></a>
+                            </li>
+                            <%} %>
+
+                            <li class="page-item"><a class="page-link" href="/admin/user?page=<%=pageNext%>">&raquo;</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -79,4 +85,9 @@
     <!--/.row-->
 </div>
 <!--/.main-->
+<script>
+    function del() {
+        return confirm("Bạn muốn xoá ?")
+    }
+</script>
 <%- include('../layout/footer') %>

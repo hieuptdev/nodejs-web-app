@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
 const ProductModel = new mongoose.Schema({
-  cat_id: mongoose.Schema.ObjectId,
+  cat_id: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Category"
+  },
   prd_name: String,
   prd_image: String,
   prd_price: String,
@@ -15,6 +18,10 @@ const ProductModel = new mongoose.Schema({
 
 }, {
   toJSON: {
+    virtuals: true
+  }
+}, {
+  toObject: {
     virtuals: true
   }
 });
